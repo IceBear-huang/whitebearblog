@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>博客分类管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/me.css}"/>
+    <link rel="icon" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
+    <link rel="bookmark" th:href="@{/public/favicon.ico}" type="image/x-icon"/>
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <a th:href="@{/admin/blogs}" class=" m-item item m-mobile-hide"><i class=" home icon"></i>博客</a>
+            <a th:href="@{/admin/types}" class="m-i2tem item m-mobile-hide"><i class=" idea icon"></i>分类</a>
+            <a th:href="@{/admin/tags}" class="active m-item item m-mobile-hide"><i class=" tags icon"></i>标签</a>
+            <a th:href="@{/view/index}" class="m-item item m-mobile-hide"><i class="= tags icon"></i>博客页面</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" th:src="@{/images/grtx.jpg}">
+                    </div>
+                    <div th:text="${session.user!=null ? session.user.getUsername():''}"></div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="logout" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class=" right menu">
+            <a th:href="@{/admin/addTag}" class="item">新增</a>
+            <a th:href="@{/admin/tags}" class="teal active item">列表</a>
+        </div>
+    </div>
+</div>
+
+
+
+<!--中间内容-->
+<div class="m-container m-padded-tb-big">
+    <div class="ui container">
+
+        <div class="ui success message" th:unless="${#strings.isEmpty(messages)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <P th:text="${messages}">恭喜，操作成功</P>
+        </div>
+
+
+        <table class="ui celled centered table">
+            <thead class="ui centered">
+                <tr class="ui centered">
+                    <th></th>
+                    <th>名称</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tag,tagzt:${taglist}">
+                    <td th:text="${tagzt.count}"></td>
+                    <td th:text="${tag.getName()}"></td>
+                    <td>
+                        <a th:href="@{|updateTag?tagId=${tag.getId()}&tagName=${tag.getName()}|}" class="ui mini teal basic button">编辑</a>
+                        <button th:onclick="|removeTag(${tag.getId()})|" class="ui mini red basic button">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui mini pagination menu">
+                        <div th:if="${hasPrevious}"><a th:href="@{|/admin/tag?pc=${pc-1}|}" class="item">上一页</a></div>
+                        <div th:if="${hasNext}"><a th:href="@{|/admin/tag?pc=${pc+1}|}" class="item">下一页</a></div>
+                    </div>
+                    <a th:href="@{/admin/addTag}" class="ui mini right floated teal basic button">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<p class="m-text-thin m-text-spaced m-opacity-tiny" style="text-align: center;">
+    <a href="http://icp.chinaz.com/info?q=whitebear.top" target="_blank">粤ICP备2021084589号-1</a>
+</p>
+
+<script th:inline="javascript">
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+    $('.ui.dropdown').dropdown();
+
+    $('.message .close')
+        .on('click',function (){
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        })
+
+    function removeTag(tagId){
+        if (confirm("你确定要删除这个标签吗？")){
+            var href = /*[[@{/admin/removeTag?tagId=}]]*/"";
+            window.location.href = href+tagId;
+        }
+    }
+</script>
+</body>
+</html>
+

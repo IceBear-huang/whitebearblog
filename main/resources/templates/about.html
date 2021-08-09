@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,minimum-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/me.css}">
+    <title>关于我</title>
+    <link rel="icon" th:href="@{/public/favicon.ico}" type="image/x-icon">
+    <link rel="bookmark" th:href="@{/public/favicon.ico}" type="image/x-icon">
+</head>
+<body>
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini" style="opacity:0.7">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">whitebear</h2>
+            <a th:href="@{/view/index}" class="m-item item m-mobile-hide"><i class=" home icon"></i>首页</a>
+            <a th:href="@{/view/types}" class=" m-item item m-mobile-hide"><i class=" idea icon"></i>分类</a>
+            <a th:href="@{/view/tags}" class=" m-item item m-mobile-hide"><i class=" tags icon"></i>标签</a>
+            <a th:href="@{/view/archives}" class="m-item item m-mobile-hide"><i class=" clone icon"></i>归档</a>
+            <a th:href="@{/view/about}" class="active m-item item m-mobile-hide"><i class=" info icon"></i>关于我</a>
+            <div class="right item m-item m-mobile-hide">
+                <form name="search" th:action="@{/view/search}" target="_blank">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" name="query" placeholder="Search....">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<!--中间内容-->
+<div class="m-container m-padded-tb-big">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+                <div class="ui segment">
+                    <img src="https://w.wallhaven.cc/full/j3/wallhaven-j3wm9w.png" alt="" class="ui centered rounded image">
+                </div>
+
+            </div>
+            <div class="five wide column" style="opacity:0.7">
+                <div class="ui top attached segment ">
+                    <div class="ui header">关于我</div>
+                </div>
+                <div class="ui attached segment ">
+                    <p class="m-utext">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        一个挣扎在Java后端的<del>程序猿</del><ins><strong>菜鸡</strong></ins>
+                        <img width="30" height="30" src="/images/emoji/weibo/dog10.png"><br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        如果有小伙伴有问题也可以加我微信,当然我绝大多数情况下也是
+                        <a href="https://www.google.com/" target="_blank"><i class="chrome icon"></i></a>
+                        <img width="30" height="30" src="/images/emoji/qq/坏笑.gif">
+                    </p>
+                </div>
+                <div class="ui attached segment">
+                    <span>技术栈:&nbsp;&nbsp;</span>
+                    <div class="ui orange basic left pointing label m-margin-tb-tiny">Java</div>
+                    <div class="ui orange basic left pointing label m-margin-tb-tiny">SpringBoot</div>
+                    <div class="ui orange basic left pointing label m-margin-tb-tiny">Mybatis-plus</div>
+                    <div class="ui orange basic left pointing label m-margin-tb-tiny">SpringCloud</div>
+                    <div class="ui orange basic left pointing label m-margin-tb-tiny">...</div>
+                </div>
+                <div class="ui attached segment">
+                    <span>爱好:&nbsp;&nbsp;</span>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">编程</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">刷视频</div>
+                    <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
+                </div>
+                <div class="ui bottom attached segment">
+                    <a href="https://github.com/IceBear-huang" target="_blank" class="ui circular icon button">
+                        <i class="github icon"></i>
+                    </a>
+                    <a href="https://blog.csdn.net/m0_46652436" target="_blank" class="ui csdn circular icon button">
+                        <i class="copyright outline icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--尾部-->
+<footer class="ui inverted vertical segment m-padded-tb-massive" id="footer" style="opacity:0.7">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <i class="qq link icon" style="display: inline;">&nbsp;475504637</i>
+                    </div>
+                    <br>
+                    <div class="item">
+                        <i class="wechat link icon" style="display: inline;">&nbsp;aa47550437</i>
+                    </div>
+                    <br>
+                    <div class="item">
+                        <i class="envelope link icon" style="display: inline;">&nbsp;475504637@qq.com</i>
+                    </div>
+                </div>
+            </div>
+            <div class="four wide column">
+                <div class="ui inverted link list">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced ">微信</h4>
+                    <div class="item">
+                        <img th:src="@{/images/wechat.jpg}" class="ui rounded image" style="width: 120px;">
+                    </div>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+                <div class="ui inverted link list">
+                    <div class="item">
+                        文章总数：<strong th:text="${blogSize}">xx</strong>
+                    </div><br>
+                    <div class="item">
+                        评论总数：<strong th:text="${commentSize}">xx</strong>
+                    </div><br>
+
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">blog</h4>
+                <p class="ui m-text-thin m-text-spaced m-opacity-mini">
+                    分享一些自己在学习和开发中遇到的问题以及解决方法。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin m-text-spaced m-opacity-tiny" style="text-align: center;">
+        <a href="http://icp.chinaz.com/info?q=whitebear.top" target="_blank">粤ICP备2021084589号-1</a>
+    </p>
+
+</footer>
+<script th:inline="javascript">
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $(function (){
+        var script1 = document.createElement('script');
+        script1.type = 'text/javascript';
+        script1.src = /*[[@{/js/snow.js}]]*/'\\js\\snow.js';
+
+        var script2 = document.createElement('script');
+        script2.type = 'text/javascript';
+        script2.src =/*[[@{/js/click_show_text.js}]]*/'\\js\\click_show_text.js';
+
+        var script3 = document.createElement('script');
+        script3.type = 'text/javascript';
+        script3.color = '220,220,220';
+        script3.opacity = '0.5';//透明度
+        script3.zIndex = '-2';
+        script3.count = '200';
+        script3.src = '//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js';
+
+        $('body').append(script1);
+        $('body').append(script2);
+        $('body').append(script3);
+    })
+</script>
+</body>
+</html>
